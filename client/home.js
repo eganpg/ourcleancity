@@ -60,6 +60,7 @@ Template.home.rendered = function () {
   });
  
   $('.down_arrow').click(function(){
+    sweetAlert("made it here dog");
     $('.content').goTo();
   });
   $('.up_arrow').click(function(){
