@@ -3,9 +3,11 @@
 }
 .down_arrow {
     color: white;
+    margin-bottom: 5%;
 }
 .up_arrow {
-    padding-top: 2%;
+		margin-top: 3%;
+    padding-top: 5%;
     margin-left: 48.5%;
     color: black;
 }
