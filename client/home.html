@@ -11,10 +11,16 @@
         <p>
             <a class="pure-button pure-button-primary photo">Public Works Request</a>
         </p>
+         {{#if photo}}
+            <div>
+              <img src={{photo}} />
+            </div>
+          {{/if}}
+
         {{#if isPhone}}
-        <p class="splash-subhead more_info">For more information</p>
-        {{else}}
         <p class="splash-subhead more_info">How it works</p>
+        {{else}}
+        <p class="splash-subhead more_info">For more information</p>
         {{/if}}
         <i class="fa fa-arrow-down fa-3x down_arrow"></i>
     </div>
@@ -25,14 +31,17 @@
     <div class="content">
         <i class="fa fa-arrow-up fa-3x up_arrow"></i>
         {{#if isPhone}}
-        <h2 class="content-head is-center">Cities across the country each have their own individualized ways for dealing with grafitti.</h2>
-        <h3 class="content-head is-center">Let us make it easy to organize the clean-up.</h3>
+        <h2 class="content-head is-center">It has never been easier to submit a public works request to your city.</h2>
+        <h3 class="content-head is-center">1. Click the 'Public Works Request' button above.</h3>
+        <h3 class="content-head is-center">2. Snap a photo of the issue in need.</h3>
+        <h3 class="content-head is-center">3. 'Our Clean City' automatically includes a location tag and submits.</h3>
+        <h3 class="content-head is-center">4. If your city currently uses 'Our Clean City', your submission will be directly submitted to the appropriate department, <br>otherwise a request will sent to your local city government requesting 'Our Clean City' in your location.</h3>
         <h4 class="content-head is-center">
             Bring 'Our Clean City' to your neighborhood.
         </h4>
         {{else}}
-        <h2 class="content-head is-center">Cities across the country each have their own individualized ways for dealing with grafitti.</h2>
-        <h3 class="content-head is-center">Let us make it easy to organize the clean-up.</h3>
+        <h2 class="content-head is-center">Cities across the country each have their own individualized ways<br>for submitting public work requests.</h2>
+        <h3 class="content-head is-center">Let us make it easier to organize.</h3>
         <h4 class="content-head is-center">
             Bring 'Our Clean City' to your neighborhood.
         </h4>

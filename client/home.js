@@ -5,11 +5,11 @@ Template.home.events({
         width: 800,
         height: 600
       };
-
+      var city = 'Los Angeles';
       MeteorCamera.getPicture(cameraOptions, function (error, data) {
         Session.set("photo", data);
+        sweetAlert('Success! Your request has been sent to the ' + city +' department of public works. Thanks for using Our Clean City.');
       });
-
     }
 });
 
@@ -26,21 +26,16 @@ Template.home.helpers({
       if(pho && (exists == undefined)){
       Photos.insert({
         location_b: loc_b,
-        photo: pho
-        
-      });}
-      
+        photo: pho 
+      });
+    }
     },
     loc: function () {
       // return 0, 0 if the location isn't ready
       var loc_a = Geolocation.latLng() || { lat: 0, lng: 0 };
-      
       return loc_a
-      
-
     },
     error: Geolocation.error
-    
   });
 Template.home.rendered = function () {
   // @see: http://stackoverflow.com/questions/5284814/jquery-scroll-to-div
@@ -55,12 +50,10 @@ Template.home.rendered = function () {
         return false;
       }
     }
-
     return true;
   });
  
   $('.down_arrow').click(function(){
-    sweetAlert("made it here dog");
     $('.content').goTo();
   });
   $('.up_arrow').click(function(){
