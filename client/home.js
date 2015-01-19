@@ -20,10 +20,12 @@ Template.home.helpers({
       var exists = Photos.findOne({
         photo: pho
       });
+      
       console.log(exists);
       var loc_b = Geolocation.latLng();
       console.log(loc_b)
       if(pho && (exists == undefined)){
+
       Photos.insert({
         location_b: loc_b,
         photo: pho 
@@ -52,11 +54,20 @@ Template.home.rendered = function () {
     }
     return true;
   });
- 
+  $('.catagory').click(function(){
+     var catagory = $('.catagory').value();
+      console.log(catagory);
+  });
   $('.down_arrow').click(function(){
     $('.content').goTo();
   });
   $('.up_arrow').click(function(){
+    $("html, body").animate({ scrollTop: "-500px" });
+  });
+  $('.up_arrow_mobile').click(function(){
+    $("html, body").animate({ scrollTop: "-500px" });
+  });
+   $('.click_above').click(function(){
     $("html, body").animate({ scrollTop: "-500px" });
   });
   (function($) {
