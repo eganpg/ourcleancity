@@ -7,9 +7,15 @@
         <p class="splash-subhead">
             Taking pride in our city.
         </p>
+        {{#if isPhone}}
         <p>
             <a class="pure-button pure-button-primary photo">Public Works Request</a>
         </p>
+        {{else}}
+        <p>
+            <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">Download App - Google Play</a>
+        </p>
+        {{/if}}
          {{#if photo}}
             <div>
               <img src={{photo}} />
