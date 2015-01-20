@@ -1,4 +1,5 @@
 var Photos = new Meteor.Collection("photos");
+var CityRequest = new Meteor.Collection("cityrequest");
 Template.home.events({
   'click .photo': function () {
       var cameraOptions = {
@@ -20,12 +21,10 @@ Template.home.helpers({
       var exists = Photos.findOne({
         photo: pho
       });
-      
       console.log(exists);
       var loc_b = Geolocation.latLng();
       console.log(loc_b)
       if(pho && (exists == undefined)){
-
       Photos.insert({
         location_b: loc_b,
         photo: pho 
@@ -69,6 +68,9 @@ Template.home.rendered = function () {
   });
    $('.click_above').click(function(){
     $("html, body").animate({ scrollTop: "-500px" });
+  });
+  $('.submit_city').click(function(){
+    alert(something);
   });
   (function($) {
       $.fn.goTo = function() {

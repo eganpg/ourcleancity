@@ -1,5 +1,7 @@
-<template name="home">
 
+
+<template name="home">
+<head><title>Our Clean City</title></head>
     <div class="splash-container">
     <div class="splash">
         <!-- {{> loginButtons}} -->
@@ -9,11 +11,14 @@
         </p>
         {{#if isPhone}}
         <p>
-            <a class="pure-button pure-button-primary photo">Public Works Request</a>
+            <a class="pure-button pure-button-primary photo">Click Here to Submit a Public Works Request</a>
         </p>
         {{else}}
         <p>
             <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">Download App - Google Play</a>
+        </p>
+        <p>
+            <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">iTunes - Coming Soon</a>
         </p>
         {{/if}}
          {{#if photo}}
@@ -62,9 +67,12 @@
             Bring 'Our Clean City' to your neighborhood.
         </h4>
         {{/if}}
+        {{#if isPhone}}
+        {{else}}
         <div class="content-head is-center">
             <img src="http://maps.googleapis.com/maps/api/staticmap?center={{loc.lat}},{{loc.lng}}&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{loc.lat}},{{loc.lng}}" />
         </div>
+        {{/if}}
         {{#if isPhone}}
         <!-- <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
@@ -83,10 +91,10 @@
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
                 <form class="pure-form pure-form-stacked contact_us">
                     <fieldset>
-                        <input id="name" type="text" placeholder="Your Name">
-                        <input id="email" type="email" placeholder="Your Email">
+                        <input id="name" type="text" placeholder="Your Name - Optional">
+                        <input id="email" type="email" placeholder="Your Email - Optional">
                         <input id="password" type="password" placeholder="Your City">
-                        <button type="submit" class="pure-button copyright">For More Info</button>
+                        <button type="submit" class="pure-button copyright submit_city">Request Your City</button>
                     </fieldset>
                 </form>
             </div>
