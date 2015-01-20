@@ -6,8 +6,9 @@
 
 
 .contact_us {
-    width: 50%;
-    margin-left: 25%;
+   text-align: center;
+   margin-left: 30%;
+   width: 40%;
 }
 /*
  * -- BASE STYLES --

@@ -1,6 +1,17 @@
 var Photos = new Meteor.Collection("photos");
 var CityRequest = new Meteor.Collection("cityrequest");
 Template.home.events({
+  'submit form': function(){
+    var name = event.target.name.value;
+    var email = event.target.email.value;
+    var city = event.target.password.value;
+      CityRequest.insert({
+        name: name,
+        email: email,
+        city: city
+      });
+      console.log('sucess');
+    },
   'click .photo': function () {
       var cameraOptions = {
         width: 800,
@@ -69,9 +80,7 @@ Template.home.rendered = function () {
    $('.click_above').click(function(){
     $("html, body").animate({ scrollTop: "-500px" });
   });
-  $('.submit_city').click(function(){
-    alert(something);
-  });
+ 
   (function($) {
       $.fn.goTo = function() {
           $('html, body').animate({
