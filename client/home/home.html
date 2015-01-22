@@ -1,4 +1,10 @@
-
+<template name="photo">
+    <h1>hello world</h1>
+     {{#each my_photos}}
+    <h1>{{location_b.lat}}</h1>
+    <img src="{{photo}}"/>
+  {{/each}}
+</template>
 
 <template name="home">
 <head><title>Our Clean City</title></head>
@@ -11,7 +17,7 @@
         </p>
         {{#if isPhone}}
         <p>
-            <a class="pure-button pure-button-primary photo">Click Here to Submit a Public Works Request</a>
+            <a class="pure-button pure-button-primary photo">Public Works Request</a>
         </p>
         {{else}}
         <p>
@@ -27,6 +33,7 @@
             </div>
           {{/if}}
         {{#if isPhone}}
+        <p class="splash-subhead more_info">Click Above to Submit Request</p>
         <p class="splash-subhead more_info">How it works</p>
         {{else}}
         <p class="splash-subhead more_info">For more information</p>

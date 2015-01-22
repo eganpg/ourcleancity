@@ -1,5 +1,23 @@
 var Photos = new Meteor.Collection("photos");
 var CityRequest = new Meteor.Collection("cityrequest");
+// Template.photo.rendered = function (){
+//     var my_photo = Photos.find({});
+//     for(i=0; i<my_photo.length; i++){}
+//     console.log(my_photo);
+  
+// };
+Template.photo.helpers({
+  my_photos: function () {
+    // this helper returns a cursor of
+    // all of the posts in the collection
+    return Photos.find({});
+  }
+});
+Template.photo.events({
+  'click .remove_photo': function(){
+
+  }
+})
 Template.home.events({
   'submit form': function(){
     var name = event.target.name.value;
@@ -10,6 +28,11 @@ Template.home.events({
         email: email,
         city: city
       });
+      Meteor.call('sendEmail',
+            'eganpg@gmail.com',
+            'eganpg@gmail.com',
+            'New City Request',
+            city );
       console.log('sucess');
     },
   'click .photo': function () {
@@ -20,7 +43,7 @@ Template.home.events({
       var city = 'Los Angeles';
       MeteorCamera.getPicture(cameraOptions, function (error, data) {
         Session.set("photo", data);
-        sweetAlert('Success! Your request has been sent to the ' + city +' department of public works. Thanks for using Our Clean City.');
+        
       });
     }
 });
@@ -34,12 +57,31 @@ Template.home.helpers({
       });
       console.log(exists);
       var loc_b = Geolocation.latLng();
-      console.log(loc_b)
+      console.log(loc_b.lat);
+      console.log(loc_b.lng);
       if(pho && (exists == undefined)){
       Photos.insert({
-        location_b: loc_b,
+        lat: loc_b.lat,
+        lng: loc_b.lng,
         photo: pho 
       });
+      if((loc_b.lat <= 34.13412) && (loc_b.lat >= 33.89393) && (loc_b.lng <= -118.01023) && (loc_b.lng >= -118.61447)){
+        Meteor.call('sendEmail',
+            'eganpg@gmail.com',
+            'eganpg@gmail.com',
+            'LA Clean Up Request',
+            'cleanup has been requested in LA' );
+        sweetAlert("You request has been sent to your local Department of Public Works");
+
+      }
+      else{
+        Meteor.call('sendEmail',
+            'eganpg@gmail.com',
+            'eganpg@gmail.com',
+            'Another City has Reqested Clean Up',
+            'cleanup has been requested in another city' );
+        sweetAlert("Sorry! Our Clean City hasn't made it to your city, please submit a request @ www.ourcleancity.com");
+      }
     }
     },
     loc: function () {
