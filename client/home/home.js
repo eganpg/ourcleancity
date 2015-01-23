@@ -10,7 +10,9 @@ Template.photo.helpers({
   my_photos: function () {
     // this helper returns a cursor of
     // all of the posts in the collection
-    return Photos.find({});
+    var photos = Photos.find({});
+    console.log(photos);
+    return photos
   }
 });
 Template.photo.events({

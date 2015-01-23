@@ -1,8 +1,11 @@
 <template name="photo">
     <h1>hello world</h1>
      {{#each my_photos}}
-    <h1>{{location_b.lat}}</h1>
+    <h1>{{lat}}</h1>
+    <h1>{{lng}}</h1>
+    <img src="http://maps.googleapis.com/maps/api/staticmap?center={{lat}},{{lng}}&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{lat}},{{lng}}" />
     <img src="{{photo}}"/>
+
   {{/each}}
 </template>
 
@@ -70,8 +73,8 @@
         <i class="fa fa-arrow-up fa-3x up_arrow"></i>
         <h2 class="content-head is-center">Cities across the country each have their own individualized ways<br>for submitting public work requests.</h2>
         <h3 class="content-head is-center">Let us make it easier to organize.</h3>
-        <h4 class="content-head is-center">
-            Bring 'Our Clean City' to your neighborhood.
+        <h4 class="content-head is-center pitch">
+            Our Clean City makes it easy to submit service requests to your local civic management. We process submissions by location density, number and frequency of requests and proximity.
         </h4>
         {{/if}}
         {{#if isPhone}}
