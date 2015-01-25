@@ -1,12 +1,21 @@
 <template name="photo">
-    <h1>hello world</h1>
+    {{> MapDemoIndex }}
      {{#each my_photos}}
     <h1>{{lat}}</h1>
     <h1>{{lng}}</h1>
-    <img src="http://maps.googleapis.com/maps/api/staticmap?center={{lat}},{{lng}}&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{lat}},{{lng}}" />
+    <img src="http://maps.googleapis.com/maps/api/staticmap?center={{location_b.lat}},{{location_b.lng}}&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{lat}},{{lng}}" />
     <img src="{{photo}}"/>
 
   {{/each}}
+</template>
+<template name="MapDemoIndex">
+  <div class="map row">
+      {{> mapCanvas2}}
+  </div>
+</template>
+
+<template name="mapCanvas2">
+    <div id="map-canvas2" class="map-canvas"></div>
 </template>
 
 <template name="home">
@@ -18,18 +27,18 @@
         <p class="splash-subhead">
             Taking pride in our city.
         </p>
-        {{#if isPhone}}
+        <!-- {{#if isPhone}} -->
         <p>
             <a class="pure-button pure-button-primary photo">Public Works Request</a>
         </p>
-        {{else}}
+        <!-- {{else}} -->
         <p>
             <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">Download App - Google Play</a>
         </p>
         <p>
             <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">iTunes - Coming Soon</a>
         </p>
-        {{/if}}
+        <!-- {{/if}} -->
          {{#if photo}}
             <div>
               <img src={{photo}} />

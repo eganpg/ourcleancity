@@ -6,6 +6,8 @@ var CityRequest = new Meteor.Collection("cityrequest");
 //     console.log(my_photo);
   
 // };
+
+
 Template.photo.helpers({
   my_photos: function () {
     // this helper returns a cursor of
