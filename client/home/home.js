@@ -32,6 +32,9 @@ Template.home.events({
         email: email,
         city: city
       });
+
+      //Sending email
+      
       Meteor.call('sendEmail',
             'eganpg@gmail.com',
             'eganpg@gmail.com',
