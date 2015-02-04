@@ -19,3 +19,5 @@ mdg:geolocation
 mystor:device-detection
 kevohagan:sweetalert
 vazco:maps
+sanjo:jasmine
+velocity:html-reporter
