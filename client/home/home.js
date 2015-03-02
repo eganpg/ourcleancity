@@ -148,3 +148,16 @@ Template.home.rendered = function () {
   })(jQuery);
 
   }
+
+// Upon Closing the app the geolocation backgroup process is suspended
+
+Meteor.startup(function(){
+  document.addEventListener("pause", onPause, false);
+  var stopWatchingPosition = function () {
+    navigator.app.exitApp();
+  };
+  function onPause(){
+    stopWatchingPosition();
+  }
+}
+})
