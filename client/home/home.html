@@ -1,148 +1,123 @@
 <template name="photo">
-    {{> MapDemoIndex }}
-     {{#each my_photos}}
-    <h1>{{lat}}</h1>
-    <h1>{{lng}}</h1>
-    <img src="http://maps.googleapis.com/maps/api/staticmap?center={{location_b.lat}},{{location_b.lng}}&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{lat}},{{lng}}" />
-    <img src="{{photo}}"/>
+  {{> MapDemoIndex }}
+  {{#each my_photos}}
+  <h1>{{lat}}</h1>
+  <h1>{{lng}}</h1>
+  <img src="http://maps.googleapis.com/maps/api/staticmap?center={{location_b.lat}},{{location_b.lng}}&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{lat}},{{lng}}" />
+  <img src="{{photo}}"/>
 
   {{/each}}
 </template>
 <template name="MapDemoIndex">
   <div class="map row">
-      {{> mapCanvas2}}
+    {{> mapCanvas2}}
   </div>
 </template>
 
 <template name="mapCanvas2">
-    <div id="map-canvas2" class="map-canvas"></div>
+  <div id="map-canvas2" class="map-canvas"></div>
 </template>
 
 <template name="home">
-<head><title>Our Clean City</title></head>
-    <div class="splash-container">
+  <head><title>Our Clean City</title></head>
+  <div class="splash-container">
     <div class="splash">
-        <!-- {{> loginButtons}} -->
-        <h1 class="splash-head">Our Clean City</h1>
-        <p class="splash-subhead">
-            Taking pride in our city.
-        </p>
-        {{#if isPhone}}
-        <p>
-            <a class="pure-button pure-button-primary photo">Public Works Request</a>
-        </p>
-        {{else}}
-        <p>
-            <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">Download App - Google Play</a>
-        </p>
-        <p>
-            <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">iTunes - Coming Soon</a>
-        </p>
-        {{/if}}
-         {{#if photo}}
-            <div>
-              <img src={{photo}} />
-            </div>
-          {{/if}}
-        {{#if isPhone}}
-        <p class="splash-subhead more_info">Click Above to Submit Request</p>
-        <p class="splash-subhead more_info">How it works</p>
-        {{else}}
-        <p class="splash-subhead more_info">For more information</p>
-        <!-- <form class="pure-form pure-form-stacked catagory">
-            <fieldset class="catagory">
-                <select class="catagory">
-                    <option class="catagory">AL</option>
-                    <option class="catagory">CA</option>
-                    <option class="catagory">IL</option>
-                </select>
-            </fieldset>
-        </form> -->
-        {{/if}}
-        <i class="fa fa-arrow-down fa-3x down_arrow"></i>
-    </div>
-</div>
-<div class="content-wrapper">
-    <div class="ribbon l-box-lrg pure-g">
-    </div>
-    <div class="content">
+      <!-- {{> loginButtons}} -->
+      <h1 class="splash-head hide_icons">Our Clean City</h1>
+      <p class="splash-subhead hide_icons">
+        Taking pride in our city.
+      </p>
+      {{#if isPhone}}
+      <p>
+        <a class="pure-button pure-button-primary photo">Public Works Request</a>
+      </p>
+      {{else}}
+      <p>
+        <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">Download App - Google Play</a>
+      </p>
+      <p>
+        <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">iTunes - Coming Soon</a>
+      </p>
+      {{/if}}
+      {{#if photo}}
+      <div>
+        <img src={{photo}} />
+      </div>
+      {{/if}}
+      
+      
+      {{#if watchButton}}
+      <p class="splash-subhead more_info">Select Service Type Below</p>
+      <div id="selection_type" class="animated">
+        <nav class="row navbar navbar-default navbar-fixed-bottom col-md-4 col-md-offset-4">
+          <a class="navbar-text selector" value="1"><i class="fa fa-bus fa-3x choice_nav"></i></a>
+          <a class="navbar-text selector" value="1"><i class="fa fa-road fa-3x choice_nav"></i></a>
+          <a class="navbar-text selector" value="1"><i class="fa fa-tree fa-3x choice_nav"></i></a>
+          <a class="navbar-text selector" value="1"><i class="fa fa-trash fa-3x choice_nav"></i></a>
+          <a class="navbar-text selector" value="1"><i class="fa fa-lightbulb-o fa-3x choice_nav"></i></a>
+          <a class="navbar-text selector" value="1"><i class="fa fa-ambulance fa-3x choice_nav"></i></a>
+        </nav>
+      </div>
+
+      {{/if}}
+      {{#if isPhone}}
+      <p class="splash-subhead more_info hide_icons">How it works</p>
+      {{else}}
+      <p class="splash-subhead more_info">For more information</p>
         
-        {{#if isPhone}}
-        <i class="fa fa-arrow-up fa-3x up_arrow_mobile"></i>
-        <h2 class="content-head is-center">It has never been easier to submit a public works request to your city.</h2>
-        <i class="fa fa-hand-o-up fa-2x icon_list click_above"></i>
-        <p class="content-head is-center">Click the 'Public Works Request' button above.</p>
-        <i class="fa fa-camera fa-2x icon_list"></i>
-        <p class="content-head is-center">Snap a photo of the issue in need.</p>
-        <i class="fa fa-globe fa-2x icon_list"></i>
-        <p class="content-head is-center">Our Clean City automatically includes a location tag and submits.</p>
-        <i class="fa fa-send fa-2x icon_list"></i>
-        <p class="content-head is-center">If your city currently uses 'Our Clean City', your submission will be directly submitted to the appropriate department, <br>otherwise a request will sent to your local city government requesting 'Our Clean City' in your location.</p>
-        {{else}}
-        <i class="fa fa-arrow-up fa-3x up_arrow"></i>
-        <h2 class="content-head is-center">Cities across the country each have their own individualized ways<br>for submitting public work requests.</h2>
-        <h3 class="content-head is-center">Let us make it easier to organize.</h3>
-        <h4 class="content-head is-center pitch">
-            Our Clean City makes it easy to submit service requests to your local civic management. We process submissions by location density, number and frequency of requests and proximity.
-        </h4>
-        {{/if}}
-        {{#if isPhone}}
-        {{else}}
-        <div class="content-head is-center">
-            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{loc.lat}},{{loc.lng}}&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{loc.lat}},{{loc.lng}}" />
+          {{/if}}
+          <i class="fa fa-arrow-down fa-3x down_arrow hide_icons"></i>
         </div>
-        {{/if}}
-        {{#if isPhone}}
-        <!-- <div class="pure-g">
-            <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked">
-                    <fieldset>
-                        <input id="name" type="text" placeholder="Your Name">
-                        <input id="email" type="email" placeholder="Your Email">
-                        <input id="password" type="password" placeholder="Your City">
-                        <button type="submit" class="pure-button">For More Info</button>
-                    </fieldset>
-                </form>
-            </div>
-        </div> -->
-        {{else}}
-        <div class="pure-g">
+      </div>
+      <div class="content-wrapper">
+        <div class="ribbon l-box-lrg pure-g">
+        </div>
+        <div class="content">
+
+          {{#if isPhone}}
+          <i class="fa fa-arrow-up fa-3x up_arrow_mobile"></i>
+          <h2 class="content-head is-center">It has never been easier to submit a public works request to your city.</h2>
+          <i class="fa fa-hand-o-up fa-2x icon_list click_above"></i>
+          <p class="content-head is-center">Click the 'Public Works Request' button above.</p>
+          <i class="fa fa-camera fa-2x icon_list"></i>
+          <p class="content-head is-center">Snap a photo of the issue in need.</p>
+          <i class="fa fa-globe fa-2x icon_list"></i>
+          <p class="content-head is-center">Our Clean City automatically includes a location tag and submits.</p>
+          <i class="fa fa-send fa-2x icon_list"></i>
+          <p class="content-head is-center">If your city currently uses 'Our Clean City', your submission will be directly submitted to the appropriate department, <br>otherwise a request will sent to your local city government requesting 'Our Clean City' in your location.</p>
+          {{else}}
+          <i class="fa fa-arrow-up fa-3x up_arrow"></i>
+          <h2 class="content-head is-center">Cities across the country each have their own individualized ways<br>for submitting public work requests.</h2>
+          <h3 class="content-head is-center">Let us make it easier to organize.</h3>
+          <h4 class="content-head is-center pitch">
+            Our Clean City makes it easy to submit service requests to your local civic management. We process submissions by location density, number and frequency of requests and proximity.
+          </h4>
+          {{/if}}
+          {{#if isPhone}}
+          {{else}}
+          <div class="content-head is-center">
+            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{loc.lat}},{{loc.lng}}&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{loc.lat}},{{loc.lng}}" />
+          </div>
+          {{/if}}
+          {{#if isPhone}}
+          {{else}}
+          <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-1-5">
-                <form class="pure-form pure-form-stacked contact_us">
-                    <fieldset>
-                        <input id="name" class="pure-input-rounded" type="text" placeholder="Your Name - Optional">
-                        <input id="email"  class="pure-input-rounded" type="email" placeholder="Your Email - Optional">
-                        <input id="password"  class="pure-input-rounded" type="text" placeholder="Your City">
-                        <button type="submit" class="pure-button submit_city">Request Your City</button>
-                    </fieldset>
-                </form>
+              <form class="pure-form pure-form-stacked contact_us">
+                <fieldset>
+                  <input id="name" class="pure-input-rounded" type="text" placeholder="Your Name - Optional">
+                  <input id="email"  class="pure-input-rounded" type="email" placeholder="Your Email - Optional">
+                  <input id="password"  class="pure-input-rounded" type="text" placeholder="Your City">
+                  <button type="submit" class="pure-button submit_city">Request Your City</button>
+                </fieldset>
+              </form>
             </div>
             
-        </div>
-        {{/if}}
-        <div class="copyright">
+          </div>
+          {{/if}}
+          <div class="copyright">
             <i class="fa fa-copyright"><span>2015 Our Clean City </span></i>
+          </div>
         </div>
-        <!-- <br>
-        <br>
-        <div class="pure-g">
-            <div class="pure-u-1-2" >
-            <i class="fa fa-camera fa-2x" style="float: right; margin-right: 0%; padding: 1%; background: #1576D0; color: white;"></i>
-            </div>
-            <div class="pure-u-1-2">
-            <i class="fa fa-bus fa-2x" style="margin-right: 0%; padding: 1%; color: #1576D0"></i>
-            </div>
-        </div>
-        <div class="pure-g">
-            <div class="pure-u-1-2">
-            <i class="fa fa-eraser fa-2x" style="float: right; margin-right: 0%; padding: 1%; color: #1576D0"></i>
-            </div>
-            <div class="pure-u-1-2">
-            <i class="fa fa-wrench fa-2x" style=" margin-right: 1%; padding: 1%; background: #1576D0; color: white;"></i>
-            </div>
-        </div> -->
-    </div>
-
-   
-</div>
-</template>
+      </div>
+    </template>

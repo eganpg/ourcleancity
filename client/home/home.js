@@ -1,11 +1,5 @@
 var Photos = new Meteor.Collection("photos");
 var CityRequest = new Meteor.Collection("cityrequest");
-// Template.photo.rendered = function (){
-//     var my_photo = Photos.find({});
-//     for(i=0; i<my_photo.length; i++){}
-//     console.log(my_photo);
-  
-// };
 
 
 Template.photo.helpers({
@@ -43,29 +37,43 @@ Template.home.events({
       console.log('sucess');
     },
   'click .photo': function () {
-      var cameraOptions = {
-        width: 800,
-        height: 600
-      };
-      var city = 'Los Angeles';
-      MeteorCamera.getPicture(cameraOptions, function (error, data) {
-        Session.set("photo", data);
-        
-      });
+    $('.photo').fadeOut();
+    Session.set('watchButton', true);
+    fadeIn();
+    function fadeIn(){
+      $('.animated').addClass('fadeInUp');
     }
+  },
+  'click .hide_icons': function(){
+    $('.photo').fadeIn();
+    Session.set('watchButton', false); 
+  },
+
+  'click .choice_nav': function(){
+    // var is_this = $(this).val();
+    // console.log(is_this);
+     var cameraOptions = {
+      width: 800,
+      height: 600
+    };
+    var city = 'Los Angeles';
+    MeteorCamera.getPicture(cameraOptions, function (error, data) {
+      Session.set("photo", data);
+      
+    });
+  }
 });
 
 Template.home.helpers({
+  watchButton: function(){
+    return Session.get('watchButton', false);
+  },
   photo: function () {
       var pho = Session.get("photo");
-      console.log(pho);
       var exists = Photos.findOne({
         photo: pho
       });
-      console.log(exists);
       var loc_b = Geolocation.latLng();
-      console.log(loc_b.lat);
-      console.log(loc_b.lng);
       if(pho && (exists == undefined)){
       Photos.insert({
         lat: loc_b.lat,
@@ -149,15 +157,21 @@ Template.home.rendered = function () {
 
   }
 
+// Selection type is hidden on startup
+
+
 // Upon Closing the app the geolocation backgroup process is suspended
 
 Meteor.startup(function(){
+
+  // document.getElementsByClassName('selection_type').hide();
+
+
   document.addEventListener("pause", onPause, false);
   var stopWatchingPosition = function () {
-    navigator.app.exitApp();
+    geolocation.clearWatch();
   };
   function onPause(){
     stopWatchingPosition();
   }
-}
 })
