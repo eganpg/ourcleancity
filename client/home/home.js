@@ -6,16 +6,27 @@ Template.photo.helpers({
   my_photos: function () {
     // this helper returns a cursor of
     // all of the posts in the collection
-    var photos = Photos.find({});
+    var photos = Photos.find({},{sort:{counter: -1}});
     console.log(photos);
     return photos
   }
+  
+
 });
 Template.photo.events({
-  'click .remove_photo': function(){
-
+  'click .downVote': function(){
+    Photos.update(
+      {_id: this._id},
+      {$inc:{counter: -1}}
+    );
+  },
+  'click .upVote': function(){
+    Photos.update(
+      {_id: this._id},
+      {$inc:{counter: 1}}
+    );
   }
-})
+});
 Template.home.events({
   'submit form': function(){
     var name = event.target.name.value;
@@ -36,22 +47,21 @@ Template.home.events({
             city );
       console.log('sucess');
     },
-  'click .photo': function () {
-    $('.photo').fadeOut();
-    Session.set('watchButton', true);
-    fadeIn();
-    function fadeIn(){
-      $('.animated').addClass('fadeInUp');
-    }
-  },
+  // 'click .photo': function () {
+  //   $('.photo').fadeOut();
+  //   Session.set('watchButton', true);
+  //   fadeIn();
+  //   function fadeIn(){
+  //     $('.animated').addClass('fadeInUp');
+  //   }
+  // },
   'click .hide_icons': function(){
     $('.photo').fadeIn();
     Session.set('watchButton', false); 
   },
 
-  'click .choice_nav': function(){
-    // var is_this = $(this).val();
-    // console.log(is_this);
+  'click .photo': function(){
+
      var cameraOptions = {
       width: 800,
       height: 600
@@ -73,35 +83,47 @@ Template.home.helpers({
       var exists = Photos.findOne({
         photo: pho
       });
-      var loc_b = Geolocation.latLng();
-      if(pho && (exists == undefined)){
-      Photos.insert({
-        lat: loc_b.lat,
-        lng: loc_b.lng,
-        photo: pho 
-      });
-      if((loc_b.lat <= 34.13412) && (loc_b.lat >= 33.89393) && (loc_b.lng <= -118.01023) && (loc_b.lng >= -118.61447)){
+      var newDate = new Date();
+      console.log(newDate);
+      
+      Location.locate(function(pos){
+         
+        if(pho && (exists == undefined)){
+        Photos.insert({
+          counter: 0,
+          lat: pos.latitude,
+          lng: pos.longitude,
+          photo: pho,
+          createdAt: newDate
+        });
+      
+      // if((loc_b.lat <= 34.13412) && (loc_b.lat >= 33.89393) && (loc_b.lng <= -118.01023) && (loc_b.lng >= -118.61447)){
         Meteor.call('sendEmail',
             'eganpg@gmail.com',
             'eganpg@gmail.com',
             'LA Clean Up Request',
-            'cleanup has been requested in LA' );
+            'cleanup has been requested in your city' );
         sweetAlert("You request has been sent to your local Department of Public Works");
 
-      }
-      else{
-        Meteor.call('sendEmail',
-            'eganpg@gmail.com',
-            'eganpg@gmail.com',
-            'Another City has Reqested Clean Up',
-            'cleanup has been requested in another city' );
-        sweetAlert("Sorry! Our Clean City hasn't made it to your city, please submit a request @ www.ourcleancity.com");
-      }
-    }
+      // }
+      // else{
+      //   Meteor.call('sendEmail',
+      //       'eganpg@gmail.com',
+      //       'eganpg@gmail.com',
+      //       'Another City has Reqested Clean Up',
+      //       'cleanup has been requested in another city' );
+      //   sweetAlert("Sorry! Our Clean City hasn't made it to your city, please submit a request @ www.ourcleancity.com");
+      // }
+        }
+      });
     },
     loc: function () {
       // return 0, 0 if the location isn't ready
       var loc_a = Geolocation.latLng() || { lat: 0, lng: 0 };
+      var location = Location.locate(function(pos){
+        // console.log(pos);
+      });
+
       return loc_a
     },
     error: Geolocation.error

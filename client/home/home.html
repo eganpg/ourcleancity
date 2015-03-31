@@ -1,10 +1,12 @@
 <template name="photo">
   {{> MapDemoIndex }}
   {{#each my_photos}}
-  <h1>{{lat}}</h1>
-  <h1>{{lng}}</h1>
-  <img src="http://maps.googleapis.com/maps/api/staticmap?center={{location_b.lat}},{{location_b.lng}}&zoom=15&size=300x300&maptype=roadmap&markers=color:blue%7C{{lat}},{{lng}}" />
-  <img src="{{photo}}"/>
+  
+  <img class="photoDisplay" src="http://maps.googleapis.com/maps/api/staticmap?center={{location_b.lat}},{{location_b.lng}}&zoom=12&size=100x100&maptype=roadmap&markers=color:blue%7C{{lat}},{{lng}}" />
+  <img  class="photoStream" src="{{photo}}"/>
+  <button class="counter">{{counter}}</button>
+  <button class="downVote">Down</button>
+  <button class="upVote">Up</button>
 
   {{/each}}
 </template>
@@ -27,18 +29,19 @@
       <p class="splash-subhead hide_icons">
         Taking pride in our city.
       </p>
-      {{#if isPhone}}
+    <!--   <div class="fb-share-button" data-href="http://www.ourcleancity.com" data-layout="button_count"></div> -->
+      <!-- {{#if isPhone}} -->
       <p>
         <a class="pure-button pure-button-primary photo">Public Works Request</a>
       </p>
-      {{else}}
+      <!-- {{else}} -->
       <p>
         <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">Download App - Google Play</a>
       </p>
       <p>
         <a class="pure-button pure-button-primary" href="https://play.google.com/store/apps/details?id=com.id1jct42h1v3xwsc1e77eim">iTunes - Coming Soon</a>
       </p>
-      {{/if}}
+      <!-- {{/if}} -->
       {{#if photo}}
       <div>
         <img src={{photo}} />
@@ -46,7 +49,7 @@
       {{/if}}
       
       
-      {{#if watchButton}}
+      <!-- {{#if watchButton}}
       <p class="splash-subhead more_info">Select Service Type Below</p>
       <div id="selection_type" class="animated">
         <nav class="row navbar navbar-default navbar-fixed-bottom col-md-4 col-md-offset-4">
@@ -59,7 +62,7 @@
         </nav>
       </div>
 
-      {{/if}}
+      {{/if}} -->
       {{#if isPhone}}
       <p class="splash-subhead more_info hide_icons">How it works</p>
       {{else}}
@@ -120,4 +123,13 @@
           </div>
         </div>
       </div>
+      <div id="fb-root"></div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=918809768164332&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
     </template>

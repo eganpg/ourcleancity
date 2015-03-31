@@ -35,3 +35,43 @@
 .copyright {
 	text-align: center;
 }
+
+.photoDisplay {
+      z-index: 10;
+  position: absolute;
+  float: right;
+  border-radius: 20%;
+  margin:5%;
+}
+
+.photoStream {
+    width:400px;
+    margin: 0 0 -2% 0;
+
+}
+.counter {
+    width: 12%;
+    height: 50px;
+    padding: 0px !important;
+    border: 0px !important;
+    background-color: #1f8dd6;
+
+}
+
+.downVote {
+    width: 42%;
+    height: 50px;
+    padding: 0px !important;
+    border: 0px !important;
+    background-color: red;
+    
+}
+
+.upVote {
+    width: 44%;
+    height: 50px;
+    padding: 0px !important;
+    border: 0px !important;
+    background-color: green;
+    
+}
